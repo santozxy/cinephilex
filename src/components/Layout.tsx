@@ -1,11 +1,11 @@
 import { Outlet } from "@tanstack/react-router";
-import { Sidebar } from "@components";
+import { Header } from "@components";
 
 export default function Layout() {
   return (
-    <div className="flex">
-      <Sidebar />
+    <>
+      <Header />
       <Outlet />
-    </div>
+    </>
   );
 }
