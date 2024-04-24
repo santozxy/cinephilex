@@ -11,17 +11,12 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
 import { Route as SeriesIndexImport } from './routes/series/index'
 import { Route as SearchIndexImport } from './routes/search/index'
 import { Route as MoviesIndexImport } from './routes/movies/index'
+import { Route as HomeIndexImport } from './routes/home/index'
 
 // Create/Update Routes
-
-const IndexRoute = IndexImport.update({
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const SeriesIndexRoute = SeriesIndexImport.update({
   path: '/series/',
@@ -38,12 +33,17 @@ const MoviesIndexRoute = MoviesIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const HomeIndexRoute = HomeIndexImport.update({
+  path: '/home/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      preLoaderRoute: typeof IndexImport
+    '/home/': {
+      preLoaderRoute: typeof HomeIndexImport
       parentRoute: typeof rootRoute
     }
     '/movies/': {
@@ -64,7 +64,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
-  IndexRoute,
+  HomeIndexRoute,
   MoviesIndexRoute,
   SearchIndexRoute,
   SeriesIndexRoute,
