@@ -1,10 +1,7 @@
-import { Header, SearchBar } from "@components";
-
 export function Home() {
   return (
-    <>
-      <Header />
-      <SearchBar />
-    </>
+    <div className="bg-light w-full">
+      <h1>Home</h1>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
-export function Search() {
+export function Movies() {
   return (
     <div className="bg-light w-full">
-      <h1>Search</h1>
+      <h1>Movies</h1>
     </div>
   );
 }
