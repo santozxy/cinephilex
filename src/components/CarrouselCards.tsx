@@ -12,7 +12,7 @@ interface ListCardsProps {
 
 const imageURL = import.meta.env.VITE_IMG;
 
-export default function ListCards({
+export default function CarrouselCards({
   title = "",
   data,
   swipeable = true,
@@ -40,6 +40,7 @@ export default function ListCards({
           mobile: {
             breakpoint: { max: 464, min: 0 },
             items: 2,
+            
           },
         }}
         ssr={true} // means to render carousel on server-side.

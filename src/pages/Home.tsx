@@ -6,8 +6,13 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { CarrouselCards, CarrouselSlide, Loading } from "@components";
 import { Separator } from "@components";
+import { useMemo, useState } from "react";
+import { Movie } from "../services/movies/moviesDTO";
 
 export function Home() {
+  const [topRatedMoviesData, setTopRatedMoviesData] = useState<Movie[]>([]);
+  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<Movie[]>([]);
+  const [popularMoviesData, setPopularMoviesData] = useState<Movie[]>([]);
   const topRatedMovies = useQuery({
     queryKey: ["topRatedMovies"],
     queryFn: () => getTopRatedMovies(),
@@ -36,15 +41,25 @@ export function Home() {
     refetchInterval: false,
   });
 
+  useMemo(() => {
+    if (nowPlayingMovies.data) {
+      setNowPlayingMoviesData(nowPlayingMovies.data.results);
+    }
+    if (popularMovies.data) {
+      setPopularMoviesData(popularMovies.data.results);
+    }
+    if (topRatedMovies.data) {
+      setTopRatedMoviesData(topRatedMovies.data.results);
+    }
+  }, [nowPlayingMovies.data, popularMovies.data, topRatedMovies.data]);
+
   return (
     <div className="w-full h-full flex flex-col p-4 mt-24">
       {nowPlayingMovies.isLoading ? (
         <Loading />
       ) : (
         nowPlayingMovies.data && (
-          <CarrouselSlide
-            data={nowPlayingMovies.data?.results ?? []}
-          />
+          <CarrouselSlide data={nowPlayingMoviesData ?? []} />
         )
       )}
       <Separator />
@@ -54,7 +69,7 @@ export function Home() {
         popularMovies.data && (
           <CarrouselCards
             title="Popular Movies"
-            data={popularMovies.data?.results ?? []}
+            data={popularMoviesData ?? []}
           />
         )
       )}
@@ -65,7 +80,7 @@ export function Home() {
         topRatedMovies.data && (
           <CarrouselCards
             title="Top rated movies"
-            data={topRatedMovies.data?.results ?? []}
+            data={topRatedMoviesData ?? []}
           />
         )
       )}

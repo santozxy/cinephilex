@@ -55,7 +55,7 @@ export default function ListCards({
                 loading="lazy"
                 src={imageURL + movie.backdrop_path}
                 alt={movie.title}
-                className="object-cover w-full h-[35rem] max-sm:h-96 rounded-md shadow-lg "
+                className="object-cover w-full h-[36rem] max-sm:h-96 rounded-md shadow-lg "
               />
               <div className="absolute w-full bottom-0 left-0 right-0 bg-dark bg-opacity-60 text-light p-1 text-xs font-medium z-[99]">
                 <h2 className="lg:text-2xl md:text-xl max-sm:text-lg text-dark dark:text-light font-medium p-3">
