@@ -1,5 +1,4 @@
 import { QueryClient } from "@tanstack/react-query";
-const minute = 1000 * 60;
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -8,9 +7,11 @@ export const queryClient = new QueryClient({
       refetchInterval: false,
       refetchIntervalInBackground: false,
       refetchOnMount: false,
+      initialData: undefined,
+      notifyOnChangeProps: ["data", "error"],
       retry: false,
-      staleTime: 10 * minute,
-      gcTime: 10 * minute,
+      staleTime: 10 * (60 * 1000),
+      gcTime: 10 * (60 * 1000),
     },
   },
 });
