@@ -6,50 +6,21 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { CarrouselCards, Loading } from "@components";
 import { Separator } from "@components";
-import { useMemo, useState } from "react";
-import { Movie } from "../services/movies/moviesDTO";
 
 export function Movies() {
-  const [topRatedMoviesData, setTopRatedMoviesData] = useState<Movie[]>([]);
-  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<Movie[]>([]);
-  const [popularMoviesData, setPopularMoviesData] = useState<Movie[]>([]);
-
   const topRatedMovies = useQuery({
-    queryKey: ["topRatedMovies"],
+    queryKey: ["topRatedMovie"],
     queryFn: () => getTopRatedMovies(),
-    initialData: undefined,
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchInterval: false,
   });
+
   const popularMovies = useQuery({
-    queryKey: ["popularMovies"],
+    queryKey: ["popularMovie"],
     queryFn: () => getPopularMovies(),
-    initialData: undefined,
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchInterval: false,
   });
   const nowPlayingMovies = useQuery({
-    queryKey: ["nowPlayingMovies"],
+    queryKey: ["nowPlayingMovie"],
     queryFn: () => getNowPlayingMovies(),
-    initialData: undefined,
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchInterval: false,
   });
-
-  useMemo(() => {
-    if (nowPlayingMovies.data) {
-      setNowPlayingMoviesData(nowPlayingMovies.data.results);
-    }
-    if (popularMovies.data) {
-      setPopularMoviesData(popularMovies.data.results);
-    }
-    if (topRatedMovies.data) {
-      setTopRatedMoviesData(topRatedMovies.data.results);
-    }
-  }, [nowPlayingMovies.data, popularMovies.data, topRatedMovies.data]);
 
   return (
     <div className="w-full h-full flex flex-col p-4 mt-24">
@@ -59,7 +30,7 @@ export function Movies() {
         nowPlayingMovies.data && (
           <CarrouselCards
             title="Now Playing Movies"
-            data={nowPlayingMoviesData ?? []}
+            data={nowPlayingMovies.data.results ?? []}
           />
         )
       )}
@@ -70,7 +41,7 @@ export function Movies() {
         topRatedMovies.data && (
           <CarrouselCards
             title="Top rated movies"
-            data={topRatedMoviesData ?? []}
+            data={topRatedMovies.data.results ?? []}
           />
         )
       )}
@@ -81,7 +52,7 @@ export function Movies() {
         popularMovies.data && (
           <CarrouselCards
             title="Popular Movies"
-            data={popularMoviesData ?? []}
+            data={popularMovies.data.results ?? []}
           />
         )
       )}
