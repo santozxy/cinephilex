@@ -1,16 +1,21 @@
 import {
   getNowPlayingMovies,
   getPopularMovies,
-  getTopRatedMovies,
 } from "../services/movies/movies";
 import { useQuery } from "@tanstack/react-query";
-import { CarrouselCards, CarrouselSlide, Loading } from "@components";
+import {
+  CarrouselCardsMovie,
+  CarrouselSlideMovie,
+  CarrouselCardsSerie,
+  Loading,
+} from "@components";
 import { Separator } from "@components";
+import { getTopRatedSeries } from "../services/series/series";
 
 export function Home() {
-  const topRatedMovies = useQuery({
-    queryKey: ["topRatedMovie"],
-    queryFn: () => getTopRatedMovies(),
+  const topRatedSeries = useQuery({
+    queryKey: ["topRatedSeries"],
+    queryFn: () => getTopRatedSeries(),
   });
   const popularMovies = useQuery({
     queryKey: ["popularMovie"],
@@ -28,7 +33,7 @@ export function Home() {
           <Loading />
         ) : (
           nowPlayingMovies.data && (
-            <CarrouselSlide data={nowPlayingMovies.data?.results ?? []} />
+            <CarrouselSlideMovie data={nowPlayingMovies.data?.results ?? []} />
           )
         )}
       </div>
@@ -37,20 +42,20 @@ export function Home() {
         <Loading />
       ) : (
         popularMovies.data && (
-          <CarrouselCards
+          <CarrouselCardsMovie
             title="Popular Movies"
             data={popularMovies.data?.results ?? []}
           />
         )
       )}
       <Separator />
-      {topRatedMovies.isLoading ? (
+      {topRatedSeries.isLoading ? (
         <Loading />
       ) : (
-        topRatedMovies.data && (
-          <CarrouselCards
-            title="Top rated movies"
-            data={topRatedMovies.data?.results ?? []}
+        topRatedSeries.data && (
+          <CarrouselCardsSerie
+            title="Top Rated Series"
+            data={topRatedSeries.data?.results ?? []}
           />
         )
       )}
