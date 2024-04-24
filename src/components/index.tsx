@@ -5,7 +5,28 @@ import { Loading } from "./Loading";
 import { Separator } from "./Separator";
 
 const Layout = React.lazy(() => import("./Layout"));
-const CarrouselCards = React.lazy(() => import("./CarrouselCards"));
-const CarrouselSlide = React.lazy(() => import("./CarrouselSlide"));
+const CarrouselCardsMovie = React.lazy(
+  () => import("./Movies/CarrouselCardsMovie")
+);
+const CarrouselSlideMovie = React.lazy(
+  () => import("./Movies/CarrouselSlideMovie")
+);
 
-export { Header, SearchBar, Layout, Loading, CarrouselCards, Separator,CarrouselSlide };
+const CarrouselCardsSerie = React.lazy(
+  () => import("./Series/CarrouselCardsSerie")
+);
+const CarrouselSlideSerie = React.lazy(
+  () => import("./Series/CarrouselSlideSerie")
+);
+
+export {
+  Header,
+  SearchBar,
+  Layout,
+  Loading,
+  Separator,
+  CarrouselCardsMovie,
+  CarrouselSlideMovie,
+  CarrouselCardsSerie,
+  CarrouselSlideSerie,
+};
