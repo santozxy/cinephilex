@@ -8,7 +8,7 @@ export function Header() {
         CinephileX
       </h1>
       <nav className="flex gap-8  justify-center items-center">
-        <Link to="/home" className="py-2 no-underline">
+        <Link to="/" className="py-2 no-underline">
           {({ isActive }) => {
             return (
               <div className="flex items-center justify-center gap-3">
