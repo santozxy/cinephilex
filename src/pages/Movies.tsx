@@ -4,7 +4,7 @@ import {
   getTopRatedMovies,
 } from "../services/movies/movies";
 import { useQuery } from "@tanstack/react-query";
-import { CarrouselCards, Loading } from "@components";
+import { CarrouselCardsMovie, Loading } from "@components";
 import { Separator } from "@components";
 
 export function Movies() {
@@ -28,7 +28,7 @@ export function Movies() {
         <Loading />
       ) : (
         nowPlayingMovies.data && (
-          <CarrouselCards
+          <CarrouselCardsMovie
             title="Now Playing Movies"
             data={nowPlayingMovies.data.results ?? []}
           />
@@ -39,7 +39,7 @@ export function Movies() {
         <Loading />
       ) : (
         topRatedMovies.data && (
-          <CarrouselCards
+          <CarrouselCardsMovie
             title="Top rated movies"
             data={topRatedMovies.data.results ?? []}
           />
@@ -50,7 +50,7 @@ export function Movies() {
         <Loading />
       ) : (
         popularMovies.data && (
-          <CarrouselCards
+          <CarrouselCardsMovie
             title="Popular Movies"
             data={popularMovies.data.results ?? []}
           />
