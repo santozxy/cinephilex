@@ -3,7 +3,7 @@ import { Header } from "@components";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col">
       <Header />
       <Outlet />
     </div>
