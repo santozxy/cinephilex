@@ -58,6 +58,7 @@ export default function ListCards({
           <div key={movie.id}>
             <Link className="relative">
               <img
+                loading="lazy"
                 src={imageURL + movie.poster_path}
                 alt={movie.title}
                 className="object-contain w-full rounded-md shadow-lg transition-all duration-400 ease-in-out transform hover:scale-105"

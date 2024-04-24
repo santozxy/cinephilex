@@ -52,6 +52,7 @@ export default function ListCards({
           <div key={movie.id}>
             <Link className="relative">
               <img
+                loading="lazy"
                 src={imageURL + movie.backdrop_path}
                 alt={movie.title}
                 className="object-cover w-full h-[35rem] max-sm:h-96 rounded-md shadow-lg "
