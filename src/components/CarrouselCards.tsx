@@ -1,23 +1,52 @@
 import { Link } from "@tanstack/react-router";
-import { Serie } from "../../services/series/seriesDTO";
+import { Movie } from "../../services/movies/moviesDTO";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Serie } from "../../services/series/seriesDTO";
 interface Props {
   title: string;
-  data: Serie[];
+  dataMovie?: Movie[];
+  dataSerie?: Serie[];
   swipeable?: boolean;
   showDots?: boolean;
   autoplay?: boolean;
 }
 
-const imageURL = import.meta.env.VITE_IMG;
+const imageURL = import.meta.env.VITE_IMG_JPG;
 
-export default function CarrouselCardsSerie({
+export default function CarrouselCards({
   title = "",
-  data,
+  dataMovie,
+  dataSerie,
   showDots = false,
   swipeable = true,
 }: Props) {
+  const ListDataMovie = dataMovie?.map((movie) => (
+    <div key={movie.id}>
+      <Link className="relative">
+        <img
+          loading="lazy"
+          src={imageURL + movie.poster_path}
+          alt={movie.title}
+          className="object-contain w-full rounded-md shadow-lg"
+        />
+      </Link>
+    </div>
+  ));
+
+  const ListDataSerie = dataSerie?.map((serie) => (
+    <div key={serie.id}>
+      <Link className="relative">
+        <img
+          loading="lazy"
+          src={imageURL + serie.poster_path}
+          alt={serie.name}
+          className="object-contain w-full rounded-md shadow-lg"
+        />
+      </Link>
+    </div>
+  ));
+
   return (
     <div>
       <h1 className="lg:text-2xl md:text-xl max-sm:text-lg text-dark dark:text-light font-medium p-3">
@@ -48,18 +77,7 @@ export default function CarrouselCardsSerie({
         dotListClass="custom-dot-list-style"
         itemClass="pr-4"
       >
-        {data.map((movie) => (
-          <div key={movie.id}>
-            <Link className="relative">
-              <img
-                loading="lazy"
-                src={imageURL + movie.poster_path}
-                alt={movie.name}
-                className="object-contain w-full rounded-md shadow-lg"
-              />
-            </Link>
-          </div>
-        ))}
+        {dataMovie ? ListDataMovie : ListDataSerie}
       </Carousel>
     </div>
   );

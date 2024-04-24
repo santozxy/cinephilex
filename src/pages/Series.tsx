@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CarrouselCardsSerie, Loading } from "@components";
+import { CarrouselCards, Loading } from "@components";
 import { Separator } from "@components";
 import { getPopularSeries, getTopRatedSeries } from "../services/series/series";
 
@@ -19,9 +19,9 @@ export function Series() {
         <Loading />
       ) : (
         popularSeries.data && (
-          <CarrouselCardsSerie
+          <CarrouselCards
             title="Popular Series"
-            data={popularSeries.data?.results ?? []}
+            dataSerie={popularSeries.data?.results ?? []}
           />
         )
       )}
@@ -30,9 +30,9 @@ export function Series() {
         <Loading />
       ) : (
         topRatedSeries.data && (
-          <CarrouselCardsSerie
+          <CarrouselCards
             title="Top Rated Series"
-            data={topRatedSeries.data?.results ?? []}
+            dataSerie={topRatedSeries.data?.results ?? []}
           />
         )
       )}

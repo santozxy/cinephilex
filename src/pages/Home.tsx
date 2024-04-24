@@ -3,12 +3,7 @@ import {
   getPopularMovies,
 } from "../services/movies/movies";
 import { useQuery } from "@tanstack/react-query";
-import {
-  CarrouselCardsMovie,
-  CarrouselSlideMovie,
-  CarrouselCardsSerie,
-  Loading,
-} from "@components";
+import { Loading, CarrouselCards, CarrouselSlide } from "@components";
 import { Separator } from "@components";
 import { getTopRatedSeries } from "../services/series/series";
 
@@ -33,7 +28,7 @@ export function Home() {
           <Loading />
         ) : (
           nowPlayingMovies.data && (
-            <CarrouselSlideMovie data={nowPlayingMovies.data?.results ?? []} />
+            <CarrouselSlide data={nowPlayingMovies.data?.results ?? []} />
           )
         )}
       </div>
@@ -42,9 +37,9 @@ export function Home() {
         <Loading />
       ) : (
         popularMovies.data && (
-          <CarrouselCardsMovie
+          <CarrouselCards
             title="Popular Movies"
-            data={popularMovies.data?.results ?? []}
+            dataMovie={popularMovies.data?.results ?? []}
           />
         )
       )}
@@ -53,9 +48,9 @@ export function Home() {
         <Loading />
       ) : (
         topRatedSeries.data && (
-          <CarrouselCardsSerie
+          <CarrouselCards
             title="Top Rated Series"
-            data={topRatedSeries.data?.results ?? []}
+            dataSerie={topRatedSeries.data?.results ?? []}
           />
         )
       )}
