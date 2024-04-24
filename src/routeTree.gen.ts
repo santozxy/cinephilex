@@ -14,7 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SeriesIndexImport } from './routes/series/index'
 import { Route as SearchIndexImport } from './routes/search/index'
-import { Route as FilmsIndexImport } from './routes/films/index'
+import { Route as MoviesIndexImport } from './routes/movies/index'
 
 // Create/Update Routes
 
@@ -33,8 +33,8 @@ const SearchIndexRoute = SearchIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const FilmsIndexRoute = FilmsIndexImport.update({
-  path: '/films/',
+const MoviesIndexRoute = MoviesIndexImport.update({
+  path: '/movies/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,8 +46,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/films/': {
-      preLoaderRoute: typeof FilmsIndexImport
+    '/movies/': {
+      preLoaderRoute: typeof MoviesIndexImport
       parentRoute: typeof rootRoute
     }
     '/search/': {
@@ -65,7 +65,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  FilmsIndexRoute,
+  MoviesIndexRoute,
   SearchIndexRoute,
   SeriesIndexRoute,
 ])
