@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Movie } from "../services/movies/moviesDTO";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-interface ListCardsProps {
+interface CarrouselSlide {
   data: Movie[];
   swipeable?: boolean;
   showDots?: boolean;
@@ -11,17 +11,17 @@ interface ListCardsProps {
 
 const imageURL = import.meta.env.VITE_IMG;
 
-export default function ListCards({
+export default function CarrouselSlide({
   data,
   swipeable = true,
   showDots = false,
   autoplay = true,
-}: ListCardsProps) {
+}: CarrouselSlide) {
   return (
-    <div>
+    <div >
       <Carousel
         swipeable={swipeable}
-        draggable={true}
+        draggable={false}
         showDots={showDots}
         responsive={{
           desktop: {
@@ -42,8 +42,6 @@ export default function ListCards({
         autoPlay={autoplay}
         autoPlaySpeed={5000}
         keyBoardControl={true}
-        customTransition="transition-all"
-        transitionDuration={1000}
         containerClass="carousel-container"
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass="custom-dot-list-style"
@@ -57,8 +55,8 @@ export default function ListCards({
                 alt={movie.title}
                 className="object-cover w-full h-[36rem] max-sm:h-96 rounded-md shadow-lg "
               />
-              <div className="absolute w-full bottom-0 left-0 right-0 bg-dark bg-opacity-60 text-light p-1 text-xs font-medium z-[99]">
-                <h2 className="lg:text-2xl md:text-xl max-sm:text-lg text-dark dark:text-light font-medium p-3">
+              <div className="absolute w-full bottom-0 left-0 right-0 bg-dark bg-opacity-60 dark:bg-opacity-70 text-light p-1 text-xs font-medium z-[99]">
+                <h2 className="lg:text-2xl md:text-xl max-sm:text-lg text-light dark:text-primary font-semibold text-center p-3">
                   {movie.title}
                 </h2>
               </div>
