@@ -1,17 +1,11 @@
 import { ListSeriesDTO } from "./seriesDTO";
 import axios from "axios";
 
-const seriesPlayingNowURL = import.meta.env.VITE_API_NOW_PLAYING;
+
 const seriesPopularURL = import.meta.env.VITE_API_POPULAR_SERIES;
-const seriesTopRatedURL = import.meta.env.VITE_API_TOP_RATED;
+const seriesTopRatedURL = import.meta.env.VITE_API_TOP_RATED_SERIES;
 const apiKey = import.meta.env.VITE_API_KEY;
 
-export async function getNowPlayingSeries() {
-  const { data } = await axios.get<ListSeriesDTO>(
-    `${seriesPlayingNowURL}?${apiKey}`
-  );
-  return data;
-}
 
 export async function getPopularSeries() {
   const { data } = await axios.get<ListSeriesDTO>(
