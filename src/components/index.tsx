@@ -10,6 +10,8 @@ const CarrouselSlide = React.lazy(() => import("./CarrouselSlide"));
 
 const CarrouselCards = React.lazy(() => import("./CarrouselCards"));
 
+const ListCardSearch = React.lazy(() => import("./ListCardSearch"));
+
 export {
   Header,
   SearchBar,
@@ -18,4 +20,5 @@ export {
   Separator,
   CarrouselSlide,
   CarrouselCards,
+  ListCardSearch,
 };
