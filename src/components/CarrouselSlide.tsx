@@ -10,7 +10,7 @@ interface Props {
 }
 
 const imageURL = import.meta.env.VITE_IMG;
-export default function CarrouselSlideMovie({
+export default function CarrouselSlide({
   data,
   swipeable = true,
   showDots = false,

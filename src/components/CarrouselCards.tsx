@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Movie } from "../../services/movies/moviesDTO";
+import { Movie } from "../services/movies/moviesDTO";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Serie } from "../../services/series/seriesDTO";
+import { Serie } from "../services/series/seriesDTO";
 interface Props {
   title: string;
   dataMovie?: Movie[];
@@ -28,7 +28,7 @@ export default function CarrouselCards({
           loading="lazy"
           src={imageURL + movie.poster_path}
           alt={movie.title}
-          className="object-contain w-full rounded-md shadow-lg"
+          className="object-contain w-full rounded-md shadow-lg border border-gray-600"
         />
       </Link>
     </div>
@@ -41,7 +41,7 @@ export default function CarrouselCards({
           loading="lazy"
           src={imageURL + serie.poster_path}
           alt={serie.name}
-          className="object-contain w-full rounded-md shadow-lg"
+          className="object-contain w-full rounded-md shadow-lg border border-gray-600"
         />
       </Link>
     </div>
