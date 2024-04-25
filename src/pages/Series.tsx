@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { CarrouselCards, Loading } from "@components";
 import { Separator } from "@components";
-import {
-  getPopularSeries,
-  getTopRatedSeries,
-} from "../../services/series/series";
+import { getPopularSeries, getTopRatedSeries } from "../services/series/series";
 
 export function Series() {
   const topRatedSeries = useQuery({
