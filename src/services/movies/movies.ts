@@ -4,7 +4,8 @@ import axios from "axios";
 const moviesPlayingNowURL = import.meta.env.VITE_API_NOW_PLAYING;
 const moviesPopularURL = import.meta.env.VITE_API_POPULAR_MOVIES;
 const moviesTopRatedURL = import.meta.env.VITE_API_TOP_RATED;
-const movieDetail = import.meta.env.VITE_API_SERIE_DETAIL;
+const movieDetailURL = import.meta.env.VITE_API_SERIE_DETAIL;
+const searchMovieURL = import.meta.env.VITE_API_SEARCH_MOVIE;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export async function getNowPlayingMovies() {
@@ -28,9 +29,16 @@ export async function getTopRatedMovies() {
   return data;
 }
 
-export async function getMovieDetails(id: number) {
+export async function getSearchMovie(search: string) {
   const { data } = await axios.get<ListMoviesDTO>(
-    `${movieDetail}${id}?${apiKey}`
+    `${searchMovieURL}?query=${search}&${apiKey}`
+  );
+  return data;
+}
+
+export async function getMovieDetail(id: number) {
+  const { data } = await axios.get<ListMoviesDTO>(
+    `${movieDetailURL}${id}?${apiKey}`
   );
   return data;
 }
