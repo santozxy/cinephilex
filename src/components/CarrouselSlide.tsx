@@ -1,7 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { Movie } from "../services/movies/moviesDTO";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  EffectCreative,
+  Autoplay,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
+import { Film, Star } from "lucide-react";
+
 interface Props {
   data: Movie[];
   swipeable?: boolean;
@@ -10,56 +18,69 @@ interface Props {
 }
 
 const imageURL = import.meta.env.VITE_IMG;
-export default function CarrouselSlide({
-  data,
-  swipeable = true,
-  showDots = false,
-  autoplay = true,
-}: Props) {
+export default function CarrouselSlide({ data }: Props) {
   return (
-    <div>
-      <Carousel
-        swipeable={swipeable}
-        draggable={false}
-        showDots={showDots}
-        responsive={{
-          desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 1,
+    <div className="relative">
+      <Swiper
+        spaceBetween={20}
+        loop={true}
+        centeredSlides={true}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        navigation
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        effect={"creative"}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
           },
-          tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1,
-          },
-          mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
+          next: {
+            shadow: true,
+            translate: ["100%", 0, 0],
           },
         }}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        autoPlay={autoplay}
-        autoPlaySpeed={5000}
-        keyBoardControl={true}
-        containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
+        modules={[EffectCreative, Navigation, Pagination, Autoplay]}
+        className="mySwiper"
       >
         {data.map((movie) => (
-          <div key={movie.id}>
+          <SwiperSlide key={movie.id}>
             <Link className="relative">
               <img
                 loading="lazy"
                 src={imageURL + movie.backdrop_path}
                 alt={movie.title}
-                className="object-cover w-full h-[36rem] max-sm:h-96 rounded-md shadow-lg "
+                className=" object-cover w-full md:h-[32rem] lg:h-[35rem] max-sm:h-64 bg-center rounded-md shadow-lg "
               />
-              <h2 className="lg:text-2xl md:text-xl max-sm:text-lg absolute bottom-0 left-0 right-0 text-light dark:text-primary font-semibold text-center bg-dark bg-opacity-60  p-3">
-                {movie.title}
-              </h2>
+
+              <div className="absolute left-0 right-0 bottom-0  bg-dark bg-opacity-60 py-5 px-3 max-sm:py-2">
+                <div className="flex items-center max-sm:justify-between pb-2 gap-x-5 sm:border-b border-gray-600">
+                  <div className="flex gap-x-2  items-center">
+                    <Film className="text-light max-sm:size-4" />
+                    <p className="text-primary font-semibold text-base max-sm:text-sm">
+                      {movie.title}
+                    </p>
+                  </div>
+                  <div className="flex gap-x-2 justify-center items-center">
+                    <Star className="text-light max-sm:size-4" />
+                    <p className="text-primary font-semibold text-base max-sm:text-sm">
+                      {movie.vote_average.toFixed(1)}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-light pt-2 text-sm max-sm:text-xs max-sm:hidden">
+                  {movie.overview}
+                </div>
+              </div>
             </Link>
-          </div>
+          </SwiperSlide>
         ))}
-      </Carousel>
+      </Swiper>
     </div>
   );
 }

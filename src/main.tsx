@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@utils";
 import { ThemeSwitcher } from "./components/SwitcherTheme";
+import "./index.css";
+import "swiper/css";
+import "swiper/css/effect-creative";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const router = createRouter({
   routeTree,
