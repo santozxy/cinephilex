@@ -3,8 +3,7 @@ import { Header } from "./Header";
 import { SearchBar } from "./SearchBar";
 import { Loading } from "./Loading";
 import { Separator } from "./Separator";
-
-const Layout = React.lazy(() => import("./Layout"));
+import { ThemeSwitcher } from "./SwitcherTheme";
 
 const CarrouselSlide = React.lazy(() => import("./CarrouselSlide"));
 
@@ -15,10 +14,10 @@ const ListCardSearch = React.lazy(() => import("./ListCardSearch"));
 export {
   Header,
   SearchBar,
-  Layout,
   Loading,
   Separator,
   CarrouselSlide,
   CarrouselCards,
   ListCardSearch,
+  ThemeSwitcher,
 };
