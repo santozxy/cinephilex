@@ -16,6 +16,7 @@ import { Separator } from "@components";
 import { useState } from "react";
 
 export const Route = createFileRoute("/movies/")({
+  
   component: () => <Movies />,
 });
 

@@ -25,7 +25,7 @@ export function Header() {
             );
           }}
         </Link>
-        <Link to="/movies" className="py-2 no-underline">
+        <Link preload='intent' to="/movies" className="py-2 no-underline">
           {({ isActive }) => {
             return (
               <div className="flex items-center justify-center gap-3">
@@ -42,7 +42,7 @@ export function Header() {
             );
           }}
         </Link>
-        <Link to="/series" className="py-2 no-underline">
+        <Link preload='intent' to="/series" className="py-2 no-underline">
           {({ isActive }) => {
             return (
               <div className="flex items-center justify-center gap-3">
