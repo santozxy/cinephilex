@@ -37,11 +37,11 @@ export default function CarrouselSlide({ data }: Props) {
         effect={"creative"}
         creativeEffect={{
           prev: {
-            shadow: true,
+           
             translate: [0, 0, -400],
           },
           next: {
-            shadow: true,
+            
             translate: ["100%", 0, 0],
           },
         }}
