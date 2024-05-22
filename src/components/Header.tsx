@@ -3,7 +3,7 @@ import { Film, Home, Search, Tv } from "lucide-react";
 
 export function Header() {
   return (
-    <div className="p-2 bg-light flex items-center justify-between w-full max-sm:flex-col px-4 h-16 max-sm:h-28 shadow-xl fixed top-0 z-[99999] dark:bg-dark">
+    <div className="p-2 bg-light flex items-center justify-between w-full max-sm:flex-col px-4 h-16 max-sm:h-28 shadow-xl sticky top-0 z-[99999] dark:bg-dark">
       <h1 className="lg:text-3xl md:text-2xl max-sm:text-2xl text-primary">
         CinephileX
       </h1>
