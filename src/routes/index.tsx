@@ -1,12 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  getNowPlayingMovies,
-  getPopularMovies,
-} from "../services/movies/movies";
+
 import { useQuery } from "@tanstack/react-query";
 import { Loading, CarrouselCards, CarrouselSlide } from "@components";
 import { Separator } from "@components";
-import { getTopRatedSeries } from "../services/series/series";
+import { getTopRatedSeries } from "@services/series/series";
+import { PopularMovies, NowPlayingMovies } from "@services/movies/queries";
 
 export const Route = createFileRoute("/")({
   component: () => <Home />,
@@ -17,17 +15,11 @@ function Home() {
     queryKey: ["topRatedSeries"],
     queryFn: () => getTopRatedSeries(),
   });
-  const popularMovies = useQuery({
-    queryKey: ["popularMovie"],
-    queryFn: () => getPopularMovies(),
-  });
-  const nowPlayingMovies = useQuery({
-    queryKey: ["nowPlayingMovie"],
-    queryFn: () => getNowPlayingMovies(),
-  });
+  const popularMovies = PopularMovies();
+  const nowPlayingMovies = NowPlayingMovies();
 
   return (
-    <div className="w-full h-full flex flex-col p-5 mt-24">
+    <div className="w-full h-full flex flex-col p-5">
       <div className="mb-5">
         {nowPlayingMovies.isLoading ? (
           <Loading />
