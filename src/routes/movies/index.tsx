@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  getNowPlayingMovies,
-  getPopularMovies,
-  getSearchMovie,
-  getTopRatedMovies,
-} from "../../services/movies/movies";
-import { useQuery } from "@tanstack/react-query";
-import {
   Loading,
   CarrouselCards,
   SearchBar,
@@ -14,33 +7,24 @@ import {
 } from "@components";
 import { Separator } from "@components";
 import { useState } from "react";
+import {
+  NowPlayingMovies,
+  PopularMovies,
+  SearchMovies,
+  TopRatedMovies,
+} from "@services/movies/queries";
 
 export const Route = createFileRoute("/movies/")({
-  
   component: () => <Movies />,
 });
 
 function Movies() {
   const [search, setSearch] = useState("");
-  const searchMovies = useQuery({
-    queryKey: ["searchMovie", search],
-    queryFn: () => getSearchMovie(search),
-    enabled: search.length > 0,
-  });
-
-  const topRatedMovies = useQuery({
-    queryKey: ["topRatedMovie"],
-    queryFn: () => getTopRatedMovies(),
-  });
-
-  const popularMovies = useQuery({
-    queryKey: ["popularMovie"],
-    queryFn: () => getPopularMovies(),
-  });
-  const nowPlayingMovies = useQuery({
-    queryKey: ["nowPlayingMovie"],
-    queryFn: () => getNowPlayingMovies(),
-  });
+  //Queries
+  const searchMovies = SearchMovies(search);
+  const topRatedMovies = TopRatedMovies();
+  const popularMovies = PopularMovies();
+  const nowPlayingMovies = NowPlayingMovies();
 
   return (
     <div className="w-full h-full flex flex-col p-4 mt-24">

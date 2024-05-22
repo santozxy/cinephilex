@@ -37,11 +37,9 @@ export default function CarrouselSlide({ data }: Props) {
         effect={"creative"}
         creativeEffect={{
           prev: {
-           
             translate: [0, 0, -400],
           },
           next: {
-            
             translate: ["100%", 0, 0],
           },
         }}
@@ -50,7 +48,11 @@ export default function CarrouselSlide({ data }: Props) {
       >
         {data.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <Link className="relative">
+            <Link
+              className="relative"
+              params={{ movieID: String(movie.id) }}
+              to="/movies/$movieID"
+            >
               <img
                 loading="lazy"
                 src={imageURL + movie.backdrop_path}

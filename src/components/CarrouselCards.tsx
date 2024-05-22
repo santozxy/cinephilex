@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Movie } from "../services/movies/moviesDTO";
 import { Serie } from "../services/series/seriesDTO";
 // Import Swiper React components
-import { Swiper,  SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -21,7 +21,11 @@ export default function CarrouselCards({
 }: Props) {
   const ListDataMovie = dataMovie?.map((movie) => (
     <SwiperSlide key={movie.id}>
-      <Link className="relative">
+      <Link
+        className="relative"
+        params={{ movieID: String(movie.id) }}
+        to="/movies/$movieID"
+      >
         <img
           loading="lazy"
           src={imageURL + movie.poster_path}
