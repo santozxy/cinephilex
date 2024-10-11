@@ -39,6 +39,7 @@ export async function createSession(request_token: string) {
     cookies().set("tmdb_session_id", data.session_id, {
       httpOnly: true,
       secure: true,
+      expires: data.expires_at,
     });
     return true;
   }
