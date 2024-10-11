@@ -14,7 +14,7 @@ export async function fetchServer(endpoint: string, options: RequestInit = {}) {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.status_message || "Erro na requisição TMDB");
+    throw new Error(data.status_message || "Erro na requisição");
   }
 
   return data;

@@ -5,7 +5,6 @@ import { fetchServer } from "@/api/fetchServer";
 
 export async function createRequestToken() {
   const data = await fetchServer("/authentication/token/new");
-  console.log("Request TOken", data);
   return data.request_token;
 }
 
