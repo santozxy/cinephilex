@@ -1,14 +1,12 @@
-import { cookies } from "next/headers";
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_API_TMDB_KEY;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 export async function fetchServer(endpoint: string, options: RequestInit = {}) {
   const url = `${TMDB_BASE_URL}${endpoint}`;
-  const session = cookies().get("tmdb_session_id")?.value;
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${session ? session : TMDB_API_KEY}`,
+    Authorization: `Bearer ${TMDB_API_KEY}`,
     ...options.headers,
   };
 
