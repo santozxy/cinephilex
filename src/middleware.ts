@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const session = request.cookies.get("tmdb_session_id");
 
   const loginURL = new URL("/login", request.nextUrl);
-  const dashboardURL = new URL("/home", request.nextUrl);
+  const dashboardURL = new URL("/", request.nextUrl);
   if (
     !session &&
     request.nextUrl.pathname !== "/login" &&
