@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Film, Home } from "lucide-react";
+import { Film, Home, Newspaper, Tv } from "lucide-react";
 
 const links = [
   { title: "Início", href: "/", icon: <Home /> },
   { title: "Filmes", href: "/movies", icon: <Film /> },
-  { title: "Séries", href: "/series", icon: <Film /> },
+  { title: "Séries", href: "/series", icon: <Tv /> },
+  { title: "Jornal", href: "/journal", icon: <Newspaper /> },
 ];
 
 export function NavLinks() {
