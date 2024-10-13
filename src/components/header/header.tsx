@@ -9,18 +9,46 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NavLinks } from "./nav-link";
 import Link from "next/link";
 import { ButtonLogout } from "./button-logout";
 import { Button } from "../ui/button";
+import { ChevronLeft, ChevronRight, Menu, Glasses } from "lucide-react";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "../ui/sheet";
+import { NavLinks } from "../sidebar/nav-link";
 
 export async function Header() {
   const user = await getAccountDetails();
   return (
-    <header className="flex items-center justify-between p-4 lg:px-8 border-b">
-      <div className="flex items-center space-x-4 lg:space-x-8">
-        <h1 className="text-2xl font-bold text-primary">CinephileX</h1>
-        <NavLinks />
+    <header className="flex justify-between px-4  sticky top-0 h-14 items-center gap-4 border-b  lg:h-[60px] lg:px-6">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent
+          side="left"
+          className="flex py-8 flex-col"
+          aria-describedby=""
+        >
+          <SheetTitle></SheetTitle>
+          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+            <Link href="/" className="flex items-center gap-2 font-semibold">
+              <div className="flex items-center gap-2">
+                <Glasses size={24} />
+                <h1 className="text-2xl max-sm:text-xl font-semibold text-primary">
+                  CinephileX
+                </h1>
+              </div>
+            </Link>
+          </div>
+          <NavLinks />
+        </SheetContent>
+      </Sheet>
+      <div className="flex items-center gap-4">
+        <ChevronLeft size={24} />
+        <ChevronRight size={24} />
       </div>
       <div className="flex items-center space-x-4">
         {!user && (
