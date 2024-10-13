@@ -42,7 +42,7 @@ export async function getBrazilianPopularMovies() {
 }
 
 export async function getTrendingDayMovies() {
-  const data: ApiResults<Movie[]> = await fetchServer(`/trending/movie/day?`, {
+  const data: ApiResults<Movie[]> = await fetchServer(`/trending/movie/day?language=pt-BR`, {
     next: {
       revalidate: 60 * 60,
     },
