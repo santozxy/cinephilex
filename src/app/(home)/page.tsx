@@ -1,13 +1,13 @@
-import { getAccountDetails } from "@/domain/auth/requests";
-import Link from "next/link";
+import { getTrendingDayMovies } from "@/domain/movies/requests";
+import {FeaturedMoviesCarousel} from "./components/featured-movies-carousel";
 
 export default async function Home() {
-  const userDetails = await getAccountDetails();
+  const tredingDayMovies = await getTrendingDayMovies();
+  console.log(tredingDayMovies);
   return (
-    <main className="container">
+    <main>
       <h1>Hello Word</h1>
-      <Link href="/login">login</Link>
-      <pre>{JSON.stringify(userDetails, null, 2)}</pre>
+      <FeaturedMoviesCarousel />
     </main>
   );
 }
