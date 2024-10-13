@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { logout } from "@/actions/auth-manager";
+import { logout } from "@/domain/auth/requests";
 
 export function ButtonLogout() {
   async function handleLogout() {

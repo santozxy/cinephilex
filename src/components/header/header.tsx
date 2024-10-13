@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getAccountDetails } from "@/actions/auth-manager";
+import { getAccountDetails } from "@/domain/auth/requests";
 import { env } from "@/env";
 import {
   DropdownMenu,
@@ -14,7 +14,7 @@ import Link from "next/link";
 import { ButtonLogout } from "./button-logout";
 import { Button } from "../ui/button";
 
-export default async function Header() {
+export async function Header() {
   const user = await getAccountDetails();
   return (
     <header className="flex items-center justify-between p-4 lg:px-8 border-b">

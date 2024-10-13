@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-
 const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={font.className}>
-      <body className="antialiased">
+      <body className="antialiased dark">
         <Toaster />
         {children}
       </body>

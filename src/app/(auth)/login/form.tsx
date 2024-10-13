@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  createRequestToken,
-  validateWithLogin,
-  createSession,
-} from "@/actions/auth-manager";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,6 +17,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { Film } from "lucide-react";
+import { createSession, getRequestToken, login } from "@/domain/auth/requests";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -34,11 +31,11 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const initialRequestToken = await createRequestToken();
-      const validatedRequestToken = await validateWithLogin(
+      const initialRequestToken = await getRequestToken();
+      const validatedRequestToken = await login(
         username,
         password,
-        initialRequestToken
+        initialRequestToken.request_token
       );
 
       if (!validatedRequestToken) {
@@ -66,7 +63,8 @@ export default function LoginPage() {
         variant: "destructive",
         title: "Erro de login",
         description:
-          "Ocorreu um erro durante o login. Por favor, tente novamente.",
+          "Ocorreu um erro durante o login. Por favor, tente novamente." +
+          error,
       });
     }
 
