@@ -25,7 +25,7 @@ interface BackdropItem {
 }
 
 interface BackdropCardProps {
-  items: BackdropItem[];
+  data: BackdropItem[];
   showCardInfo?: boolean;
   path?: string;
 }
@@ -44,7 +44,7 @@ function generateLink(item: BackdropItem) {
 }
 
 export function BackdropCard({
-  items,
+  data,
   showCardInfo = true,
   path,
 }: BackdropCardProps) {
@@ -62,7 +62,7 @@ export function BackdropCard({
       className="w-full max-sm:h-72 md:h-[40rem] lg:h-[45rem]"
     >
       <CarouselContent>
-        {items?.map((item) => (
+        {data?.map((item) => (
           <CarouselItem key={item.id}>
             <Card className="border-none">
               <CardContent className="p-0 relative">
@@ -89,9 +89,9 @@ export function BackdropCard({
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background"></div>
                 </Link>
                 {showCardInfo && (
-                  <div className="absolute sm:top-20 top-4 max-sm:left-0 left-10 flex items-center justify-center z-20">
+                  <div className="absolute sm:top-20 top-4 max-sm:left-0 left-10 flex data-center justify-center z-20">
                     <div className="flex flex-col gap-4 sm:w-96 p-2 rounded-lg ">
-                      <div className="flex sm:flex-col items-start gap-4">
+                      <div className="flex sm:flex-col data-start gap-4">
                         <Popcorn size={24} className="text-primary" />
                         <h1 className="sm:text-xl uppercase font-extrabold">
                           {item.title || item.name || "Sem título"}

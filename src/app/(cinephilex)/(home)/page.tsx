@@ -8,8 +8,8 @@ export default async function Home() {
   const popularMovies = await getPopularMovies();
   return (
     <main className="flex flex-col">
-      <BackdropCard items={featuredMoviesAndSeries} />
-      <CarouselCards items={popularMovies} />
+      <BackdropCard data={featuredMoviesAndSeries} />
+      <CarouselCards data={popularMovies} />
     </main>
   );
 }

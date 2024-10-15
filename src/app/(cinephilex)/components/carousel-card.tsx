@@ -18,7 +18,7 @@ import { Serie } from "@/domain/series/types";
 type Item = Movie | Serie;
 
 interface CarouselCardsProps {
-  items: Item[];
+  data: Item[];
 }
 
 function generateLink(item: Item) {
@@ -29,7 +29,7 @@ function generateLink(item: Item) {
   }
 }
 
-export function CarouselCards({ items }: CarouselCardsProps) {
+export function CarouselCards({ data }: CarouselCardsProps) {
   return (
     <Carousel
       opts={{
@@ -39,7 +39,7 @@ export function CarouselCards({ items }: CarouselCardsProps) {
       className="w-[90%] max-sm:w-full mx-auto"
     >
       <CarouselContent className="-ml-2 md:-ml-4">
-        {items.map((item) => (
+        {data.map((item) => (
           <CarouselItem
             key={item.id}
             className="pl-2 md:pl-4 basis-1/3 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-[12%]"
@@ -58,7 +58,7 @@ export function CarouselCards({ items }: CarouselCardsProps) {
                       <h3 className="font-semibold text-xs sm:text-sm truncate">
                         {item.title || item.name}
                       </h3>
-                      <div className="flex items-center mt-1">
+                      <div className="flex data-center mt-1">
                         <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 mr-1" />
                         <span className="text-xs">
                           {item.vote_average.toFixed(1)}
