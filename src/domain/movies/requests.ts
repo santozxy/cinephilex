@@ -1,29 +1,30 @@
 import { fetchServer } from "@/api/fetchServer";
 import { ApiResults } from "@/api/types";
 import { Movie } from "./types";
+import { Videos } from "../all/types";
 
 export async function getNowPlayingMovies() {
   const data = await fetchServer(`/movie/now_playing?`, {
     next: {
-      revalidate: 60 * 60,
+      revalidate: 60 * 60 * 24,
     },
   });
   return data;
 }
 
 export async function getPopularMovies() {
-  const data = await fetchServer(`/movie/popular?page=1`, {
+  const data:ApiResults<Movie[]> = await fetchServer(`/movie/popular?page=1`, {
     next: {
-      revalidate: 60 * 60,
+      revalidate: 60 * 60 * 24,
     },
   });
-  return data;
+  return data.results;
 }
 
 export async function getTopRatedMovies() {
   const data = await fetchServer(`/movie/top_rated?`, {
     next: {
-      revalidate: 60 * 60,
+      revalidate: 60 * 60 * 24,
     },
   });
   return data;
@@ -34,7 +35,7 @@ export async function getBrazilianPopularMovies() {
     `/discover/movie?sort_by=popularity.desc&with_origin_country=BR`,
     {
       next: {
-        revalidate: 60 * 60,
+        revalidate: 60 * 60 * 24,
       },
     }
   );
@@ -42,37 +43,24 @@ export async function getBrazilianPopularMovies() {
 }
 
 export async function getTrendingDayMovies() {
-  const data: ApiResults<Movie[]> = await fetchServer(`/trending/movie/day?language=pt-BR`, {
-    next: {
-      revalidate: 60 * 60,
-    },
-  });
+  const data: ApiResults<Movie[]> = await fetchServer(
+    `/trending/movie/day?language=pt-BR`,
+    {
+      next: {
+        revalidate: 60 * 60 * 24,
+      },
+    }
+  );
   return data;
 }
 
 export async function getGenreMovies(id: string) {
   const data = await fetchServer(`/discover/movie?with_genres=${id}`, {
     next: {
-      revalidate: 60 * 60,
+      revalidate: 60 * 60 * 24,
     },
   });
   return data;
-}
-
-export async function getMovieWithHighPopularity() {
-  const yearActual = new Date().getFullYear();
-  const data = await fetchServer(
-    `/discover/movie?include_adult=false&include_video=false&page=1&primary_release_year=${yearActual}&sort_by=popularity.desc`,
-    {
-      next: {
-        revalidate: 60 * 60,
-      },
-    }
-  );
-  const dataWithOverviews = data.results.filter((movie) => movie.overview);
-  const randomIndex = Math.floor(Math.random() * dataWithOverviews.length);
-  const movie = dataWithOverviews[randomIndex];
-  return movie;
 }
 
 export async function getCreditsMovie(id: string) {
@@ -124,7 +112,7 @@ export async function getReviewsMovie(id: string) {
 }
 
 export async function getVideosMovie(id: string) {
-  const data = await fetchServer(`/movie/${id}/videos?language=`, {
+  const data: Videos = await fetchServer(`/movie/${id}/videos?language=`, {
     next: {
       revalidate: 60 * 60,
     },
