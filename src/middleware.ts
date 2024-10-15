@@ -3,16 +3,14 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const session = request.cookies.get("tmdb_session_id");
-
-  const loginURL = new URL("/login", request.nextUrl);
+  //const loginURL = new URL("/login", request.nextUrl);
   const dashboardURL = new URL("/", request.nextUrl);
-  if (
-    !session &&
-    request.nextUrl.pathname !== "/login" &&
-    request.nextUrl.pathname !== "/"
-  ) {
-    return NextResponse.redirect(loginURL);
-  }
+  // if (!session &&
+  //   request.nextUrl.pathname !== "/login" &&
+  //   request.nextUrl.pathname !== "/"
+  // ) {
+  //   return NextResponse.redirect(loginURL);
+  // }
   if (session && request.nextUrl.pathname === "/login") {
     return NextResponse.redirect(dashboardURL);
   }
