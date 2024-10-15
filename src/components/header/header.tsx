@@ -12,14 +12,15 @@ import {
 import Link from "next/link";
 import { ButtonLogout } from "./button-logout";
 import { Button } from "../ui/button";
-import { ChevronLeft, ChevronRight, Menu, Glasses } from "lucide-react";
+import {  Menu, Glasses } from "lucide-react";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "../ui/sheet";
 import { NavLinks } from "../sidebar/nav-link";
+import { Input } from "../ui/input";
 
 export async function Header() {
   const user = await getAccountDetails();
   return (
-    <header className="flex justify-between px-4  sticky top-0 h-14 items-center gap-4 border-b  lg:h-[60px] lg:px-6">
+    <header className="flex justify-between px-4 bg-background sticky top-0 h-14 items-center gap-4 border-b z-20  lg:h-[60px] lg:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -46,11 +47,11 @@ export async function Header() {
           <NavLinks />
         </SheetContent>
       </Sheet>
-      <div className="flex items-center gap-4">
-        <ChevronLeft size={24} />
-        <ChevronRight size={24} />
-      </div>
+      <div />
       <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
+          <Input placeholder="Pesquisar" />
+        </div>
         {!user && (
           <Link href="/login">
             <Button>Entrar</Button>
